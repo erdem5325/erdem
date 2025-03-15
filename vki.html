@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKİ Hesaplama</title>
+    <style>
+        body {
+            background: url('https://marketplace.canva.com/EAFINnUsPyA/1/0/1600w/canva-siyah-modern-teknoloji-masa%C3%BCst%C3%BC-duvar-ka%C4%9F%C4%B1d%C4%B1-1iOEJNrdkZc.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            flex-direction: column;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 90%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #result, #advice {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #1da1f2;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Yapımcı: SHADOW53</div>
+    <div class="container">
+        <h1>VKİ Hesaplama</h1>
+        <input type="number" id="boy" placeholder="Boy (metre cinsinden)" step="0.01">
+        <input type="number" id="kilo" placeholder="Kilo (kg cinsinden)">
+        <button onclick="hesaplaVKI()">Hesapla</button>
+        <p id="result"></p>
+        <p id="advice"></p>
+    </div>
+    <div class="footer">
+        <a href="https://www.instagram.com/erdem_ztrk/" target="_blank">Instagram: @erdem_ztrk</a>
+    </div>
+    <script>
+        function hesaplaVKI() {
+            let boy = parseFloat(document.getElementById('boy').value);
+            let kilo = parseFloat(document.getElementById('kilo').value);
+            
+            if (!boy || !kilo || boy <= 0 || kilo <= 0) {
+                document.getElementById('result').innerText = "Lütfen geçerli değerler girin!";
+                document.getElementById('advice').innerText = "";
+                return;
+            }
+            
+            let vki = kilo / (boy * boy);
+            let durum = "";
+            let tavsiye = "";
+            
+            if (vki < 18.5) {
+                durum = "Zayıfsınız";
+                tavsiye = "Daha sağlıklı kilo almak için besleyici ve dengeli bir diyet uygulayın.";
+            } else if (vki < 25) {
+                durum = "Normal kilodasınız";
+                tavsiye = "Mevcut kilonuzu korumak için dengeli beslenmeye ve aktif kalmaya devam edin.";
+            } else if (vki < 30) {
+                durum = "Fazla kilolusunuz";
+                tavsiye = "Sağlıklı beslenmeye ve düzenli egzersiz yapmaya özen gösterin.";
+            } else {
+                durum = "Obezsiniz";
+                tavsiye = "Kilo vermek için sağlıklı bir diyet ve egzersiz programı uygulayın, bir uzmandan destek alabilirsiniz.";
+            }
+            
+            document.getElementById('result').innerText = `VKİ: ${vki.toFixed(2)} - ${durum}`;
+            document.getElementById('advice').innerText = tavsiye;
+        }
+    </script>
+</body>
+</html>
